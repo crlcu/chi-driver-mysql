@@ -11,7 +11,9 @@ CHI::Driver::MySQL - Use MySQL for cache storage
 # DESCRIPTION
 This driver uses a `chi_cache` table to store the cache. The table is created by the driver itself.
 
+
 Encode is required for encoding as UTF-8 the value that is about to be stored in database
+
 Mojo::mysql is required for connection to database
 
 # AUTHOR
