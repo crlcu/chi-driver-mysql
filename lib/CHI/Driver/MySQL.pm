@@ -1,12 +1,12 @@
 package CHI::Driver::MySQL;
 use Mojo::Base 'CHI::Driver';
 
-our $VERSION = '1.0';
+our $VERSION = '0.1';
 
 use Encode qw(encode);
 use Mojo::mysql;
 
-has 'namespace';
+has 'namespace' => sub { 'default' };
 
 has 'dsn' => sub {
     return shift->constructor_params->{ dsn };
@@ -115,6 +115,46 @@ This driver uses a `chi_cache` table to store the cache. The table is created by
 
 Encode is required for encoding as UTF-8 the value that is about to be stored in database
 Mojo::mysql is required for connection to database
+
+=head1 ATTRIBUTES
+L<CHI::Driver::MySQL> implements the following attributes.
+
+=head2 dsn
+Data Source Name, defaults to C<dbi:mysql:dbname=test>.
+
+=head2 namespace
+The namespace to be used, defaults to C<default>.
+
+=head2 mysql
+L<Mojo::mysql> instance.
+
+=head1 METHODS
+L<CHI::Driver::MySQL> inherits all methods from L<CHI::Driver> and implements the
+following new ones.
+
+=head2 clear
+  $cache->clear
+Remove all the entries from chi_cache table for current namespace.
+
+=head2 fetch
+  $cache->fetch($key)
+Fetch a row from chi_cache table for current namespace and given $key.
+
+=head2 get_keys
+  $cache->get_keys
+Get all the keys from chi_cache table for current namespace.
+
+=head2 get_namespaces
+  $cache->get_namespaces
+Get all the namespaces from chi_cache table.
+
+=head2 remove
+  $cache->remove($key)
+Remove a key from chi_cache table for current namespace.
+
+=head2 store
+  $cache->store($key, $data)
+Store key and data in chi_cache table for current namespace.
 
 =head1 AUTHOR
 
