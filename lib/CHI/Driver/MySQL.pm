@@ -1,7 +1,7 @@
 package CHI::Driver::MySQL;
 use Mojo::Base 'CHI::Driver';
 
-our $VERSION = '0.1';
+our $VERSION = '0.2';
 
 use Encode qw(encode);
 use Mojo::mysql;

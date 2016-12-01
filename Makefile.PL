@@ -17,10 +17,11 @@ WriteMakefile(
         },
     },
     BUILD_REQUIRES => {
-        'Test::More' => '0.90',
-        'File::Find' => '1.23',
+        'Test::More' => '0',
+        'File::Find' => '0',
     },
     PREREQ_PM => {
+        'CHI::Driver' => '0',
         'Encode' => '2.87',
         'Mojo::mysql' => '0.14'
     },
