@@ -37,7 +37,7 @@ sub clear {
 sub fetch {
     my ( $self, $key ) = @_;
 
-    my $sql = 'select `value` from `chi_cache` where `namespace` = ? and `key` = ?';
+    my $sql = 'select `value` from `chi_cache` where `namespace` = ? and `key` = ? order by id desc limit 1';
     my $result = $self->mysql->db->query($sql, $self->namespace, $key)
         ->hash;
 
@@ -76,7 +76,7 @@ sub remove {
 sub store {
     my ( $self, $key, $data ) = @_;
 
-    if ( $self->get($key) ) {
+    if ( $self->fetch($key) ) {
         my $sql = 'update `chi_cache` set `value` = ?, `updated_at` = now() where `namespace` = ? and `key` = ?';
         $self->mysql->db->query($sql, encode('UTF-8', $data), $self->namespace, $key);
     } else {
